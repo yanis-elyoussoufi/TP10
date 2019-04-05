@@ -33,23 +33,40 @@ LIEN CLASSROOM ICI
 
 Date limite de rendu de votre code sur le dépôt GitHub : **Dimanche 14 avril à 23h00**
 
-Reprenons les différentes classes modélisant les **employés** que vous avez écrites pour le [TP5](https://github.com/IUTInfoMontp-M2103/TP5). Pour éviter d'altérer le code du TP5, copiez ces classes dans ce projet (TP10). Le but de ce TP est de proposer différentes organisations des employés dans l'entreprise en fonction des besoins du client. 
+Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github.com/IUTInfoMontp-M2103/TP5). Pour éviter d'altérer le code du TP5, copiez cette classe dans ce projet (TP10). Le but de ce TP est de proposer différentes organisations des employés dans l'entreprise en fonction des besoins du client. 
 
-# Exercice 1
+### Exercice 1 - mise en place
 
-Pour une meilleure organisation de votre projet, déplacer toutes les classes métiers d'employés dans un autre package (par exemple `fr.umontpellier.iut.employes`)
+1. Ajoutez un attribut `dateEmbauche` de de type `LocalDate` dans la classe `Employe` et faites les modifications nécessaires pour la construction d'un objet de type `Employe`. Ajoutez également un accesseur à cet attribut.
 
-1. Ajoutez un attribut `dateEmbauche` de de type `LocalDate` dans la classe `Employe`.
-
-2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible). Ajoutez un constructeur sans paramètres à la classe `Entreprise` instanciant cette collection en tant que `ArrayList`.  
+2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible) que l'on va appelé `lePersonnel`. Ajoutez un constructeur sans paramètres instanciant cette collection en tant que `ArrayList`.  
 
 3. Ajoutez-y les méthodes `void embaucher(Employe e)` et `void licencier(Employe e)` pour mettre à jour la liste d'employés de manière correspondante.
 
 4. Redéfinissez la méthode `String toString()` de la classe `Entreprise`.
 
-5. Vérifiez votre programme en créant dans la classe principale une entreprise et en embauchant plusieurs employés et en affichant l'état de l'entreprise.
+5. Vérifiez votre programme en créant dans la classe principale une entreprise et en embauchant plusieurs employés. Vous afficherez l'état de l'entreprise après chacune des opérations.
 
-6. L'entreprise souhaite distribuer des bonus à ses employés en fonction de la date d'embauche. La somme disponible (le bonus total) que les chefs comptent distribuer est fixée par l'utilisateur. Cette somme étant limitée, on ne pourra pas distribuer des bonus à chaque employé. Pour cela l'entreprise a décidé de donner la priorité aux anciens. Ainsi le bonus sera d'abord distribué aux personnes avec l'ancienneté la plus élevée. L'ancienneté est calculée sur le nombre de mois complets depuis la date d'embauche (un mois complet est compté du 1er au 30/31). Le bonus qu'un employé va recevoir est égal à `3*ancienneté`.
+
+### Exercice 2 - organisation des employés
+
+L'entreprise souhaite mieux organiser ses employés. Ainsi, pour éviter les erreurs de saisie au moment de l'embauche il a été décidé de suivre la régle d'unicité des employés ayant le même numéro INSEE.
+
+1. Redéfinissez de manière correspondante les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe`.
+
+2. Une deuxième contrainte que l'entreprise souhaite gérer c'est l'ordre d'affichage des employés. Il a été décidé de les stocker en ordre croissant suivant leur nom et en cas d'égalité, appliquer l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, changez l'implémentation de la collection `lePersonnel` définies dans la classe `Entreprise` afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
+  **Attention** : Le nombre de modifications doit être le plus petit possible et donc ici il vous est demandé de modifier uniquement le constructeur. 
+
+
+### Exercice 3 - priorité aux anciens
+
+L'entreprise souhaite distribuer des bonus à ses employés en fonction de la date d'embauche. Mais cette somme est évidemment limité, donc on risque de ne pas pouvoir distribuer des bonus à chaque employé... 
+
+1. Ajoutez un attribut `double bonusTotal` à la classe `Entreprise` et un _setter_ afin que l'utilisateur puisse fixer la somme d'argent disponible pour distribuer un bonus aux employés.
+
+2. Ajoutez à la classe `Employe` un attribut `double bonus` et une méthode `void setBonus(double bonus)`.
+ 
+3. Ajoutez dans la classe `Employe` une méthode `int getMoisAncienneté()` qui renvoient le nombre de mois correspondant à l'intervalle de temps entre la date d'embauche et maintenant.
     
     **Astuce :** pour calculer l'ancienneté vous pouvez utiliser la classe `ChronoUnit` qui permet d'effectuer des calculs en fonction de différentes unités temporelles (jours, mois, années etc.). Voici un exemple de code qui permet de calculer le nombre de mois entre la date d'embauche et la date d'aujourd'hui :
  
@@ -63,3 +80,12 @@ Pour une meilleure organisation de votre projet, déplacer toutes les classes m�
         }
     }
     ```
+ 
+4. Le patron a décidé de donner la priorité aux anciens pour la distribution du bonus. Ainsi, le bonus sera d'abord distribué aux personnes avec l'ancienneté la plus élevée. L'ancienneté est calculée sur le nombre de mois complets depuis la date d'embauche (un mois complet est compté du 1er au 30/31). Le bonus qu'un employé va recevoir est égal à `3*ancienneté`. Ajoutez à la classe `Entreprise` une méthode `void distribuerBonus()` qui effectue cette tâche **sans utiliser explicitement** un algorithme de tri et sans modifier la classe `Employe`.
+
+5. Modifiez la méthode `toString()` de `Employe` afin qu'elle affiche également le bonus que l'employé a reçu et testez votre solution.
+
+6. L'entreprise traverse une période de crise et décide de se séparer d'une partie de ses employés. Afin de fidéliser les anciens employés, ce qui a été décidé c'est de licencier les employés ayant travaillé le moins longtemps dans l'entreprise. Sans modifier le code précédemment écrit, ajoutez dans la classe `Entreprise` une méthode `void remercier(int n)` qui permet de licencier `n` personnes les plus  anciennes dans l'ordre décroissant.
+
+### Exercice 4 - ???
+
