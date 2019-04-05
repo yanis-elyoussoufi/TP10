@@ -37,7 +37,7 @@ Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github
 
 ### Exercice 1 - mise en place
 
-1. Ajoutez un attribut `dateEmbauche` de de type `LocalDate` dans la classe `Employe` et faites les modifications nécessaires pour la construction d'un objet de type `Employe`. Ajoutez également un accesseur à cet attribut.
+1. Ajoutez un attribut `dateEmbauche` de type `LocalDate` dans la classe `Employe` et faites les modifications nécessaires pour la construction d'un objet de type `Employe`. Ajoutez également un accesseur à cet attribut.
 
 2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible) que l'on va appelé `lePersonnel`. Ajoutez un constructeur sans paramètres instanciant cette collection en tant que `ArrayList`.  
 
@@ -53,10 +53,12 @@ Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github
 L'entreprise souhaite mieux organiser ses employés. Ainsi, pour éviter les erreurs de saisie au moment de l'embauche il a été décidé de suivre la régle d'unicité des employés ayant le même numéro INSEE.
 
 1. Redéfinissez de manière correspondante les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe`.
+Vous pouvez utiliser la méthode `hashCode()` de la classe `String`.
 
-2. Une deuxième contrainte que l'entreprise souhaite gérer c'est l'ordre d'affichage des employés. Il a été décidé de les stocker en ordre croissant suivant leur nom et en cas d'égalité, appliquer l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, changez l'implémentation de la collection `lePersonnel` définie dans la classe `Entreprise` afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
-  **Attention** : Le nombre de modifications doit être le plus petit possible et donc ici il vous est demandé de modifier uniquement le constructeur. 
+2. Une deuxième contrainte que l'entreprise souhaite gérer est l'ordre d'affichage des employés. Il a été décidé de les stocker en ordre croissant suivant leur nom et en cas d'égalité, appliquer l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, changez l'implémentation de la collection `lePersonnel` définie dans la classe `Entreprise` afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
+  **Attention** : Le nombre de modifications doit être le plus petit possible et donc ici il vous est demandé de modifier uniquement le constructeur.  
 
+3. Ecrivez des tests unitaires vérifiant que l'on ne peut insérer deux employés de même numéro INSEE, et que le parcours du personnel d'une entreprise s'effectue bien dans l'odre souhaité.
 
 ### Exercice 3 - priorité aux anciens
 
