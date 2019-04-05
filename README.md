@@ -50,13 +50,13 @@ Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github
 
 ### Exercice 2 - organisation des employés
 
-L'entreprise souhaite mieux organiser ses employés. Ainsi, pour éviter les erreurs de saisie au moment de l'embauche il a été décidé de suivre la régle d'unicité des employés ayant le même numéro INSEE.
+L'entreprise souhaite mieux organiser ses employés. Le problème c'est que la collection `lePersonnel` peut avoir la même personne plusieurs fois si elle occupe des postes différents. Et donc il ne faut surtout pas changer cela.
 
-1. Redéfinissez de manière correspondante les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe`.
+1. Redéfinissez les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe` afin de distinguer deux employés en fonction de leur numéro INSEE.
 Vous pouvez utiliser la méthode `hashCode()` de la classe `String`.
 
-2. Une deuxième contrainte que l'entreprise souhaite gérer est l'ordre d'affichage des employés. Il a été décidé de les stocker en ordre croissant suivant leur nom et en cas d'égalité, appliquer l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, changez l'implémentation de la collection `lePersonnel` définie dans la classe `Entreprise` afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
-  **Attention** : Le nombre de modifications doit être le plus petit possible et donc ici il vous est demandé de modifier uniquement le constructeur.  
+2. Maintenant l'entreprise souhaite pouvoir retrouver l'ensemble de ses employés sans les doublons. De plus il serait souhaitable de pouvoir récuperer l'ensemble des employés dans l'ordre. L'ordre choisi est l'orde croissant suivant leur nom et qui en cas d'égalité, applique l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, ajoutez une méthode `Collection<Employe> getEmployes()` qui, à partir de la collection `lePersonnel`, retourne une autre collection respectant cette contrainte. afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
+  **Attention** : Pas de modifications du code précédemment écrit (et donc de l'attribut `lePersonnel`).  
 
 3. Ecrivez des tests unitaires vérifiant que l'on ne peut insérer deux employés de même numéro INSEE, et que le parcours du personnel d'une entreprise s'effectue bien dans l'odre souhaité.
 
