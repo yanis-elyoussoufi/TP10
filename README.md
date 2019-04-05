@@ -58,7 +58,7 @@ Vous pouvez utiliser la méthode `hashCode()` de la classe `String`.
 2. Maintenant l'entreprise souhaite pouvoir retrouver l'ensemble de ses employés sans les doublons. De plus il serait souhaitable de pouvoir récuperer l'ensemble des employés dans l'ordre. L'ordre choisi est l'orde croissant suivant leur nom et qui en cas d'égalité, applique l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, ajoutez une méthode `Collection<Employe> getEmployes()` qui, à partir de la collection `lePersonnel`, retourne une autre collection respectant cette contrainte. afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
   **Attention** : Pas de modifications du code précédemment écrit (et donc de l'attribut `lePersonnel`).  
 
-3. Ecrivez des tests unitaires vérifiant que l'on ne peut insérer deux employés de même numéro INSEE, et que le parcours du personnel d'une entreprise s'effectue bien dans l'odre souhaité.
+3. Ecrivez des tests unitaires vérifiant que l'on ne récupère pas deux employés de même numéro INSEE, et que le parcours du personnel d'une entreprise s'effectue bien dans l'odre souhaité.
 
 ### Exercice 3 - priorité aux anciens
 
