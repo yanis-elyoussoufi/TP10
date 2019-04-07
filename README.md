@@ -6,7 +6,7 @@
 * **Enseignants:** [Marin Bougeret](mailto:marin.bougeret@umontpellier.fr), [Sébastien Gagné](mailto:sebastien.gagne@umontpellier.fr), [Victor Poupet](mailto:victor.poupet@umontpellier.fr), [Petru Valicov](mailto:petru.valicov@umontpellier.fr) 
 * Le [forum Piazza](https://piazza.com/class/jpv7gf0lltk4kc) de ce cours pour poser vos questions
 * [Email](mailto:petru.valicov@umontpellier.fr) pour une question d'ordre privée concernant le cours.
-* Le [sujet du TP](http://pageperso.lif.univ-mrs.fr/~petru.valicov/Cours/M2103/TP10.pdf) en format .pdf téléchargeable et imprimable.
+* Le [sujet du TP](https://gitprint.com/IUTInfoMontp-M2103/TP10) en format .pdf téléchargeable et imprimable.
 
 Avant de démarrer le TP, vérifiez que vous n'avez pas atteint votre quota d'espace de stockage autorisé :
 
@@ -20,12 +20,10 @@ Avant de démarrer le TP, vérifiez que vous n'avez pas atteint votre quota d'es
 
 ### Consignes
 - Vous respecterez les différents principes de programmation vues dans les TPs précédents
-- Pour chaque exercice il faudra écrire un code à part
 
 
 
-## TP10
-#### _Thème : les Collections_
+## TP10 : _utilisation des collections Java_
 
 Cliquez sur le lien ci-dessous pour faire votre fork privé du TP :
 
@@ -39,26 +37,33 @@ Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github
 
 1. Ajoutez un attribut `dateEmbauche` de type `LocalDate` dans la classe `Employe` et faites les modifications nécessaires pour la construction d'un objet de type `Employe`. Ajoutez également un accesseur à cet attribut.
 
-2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible) que l'on va appelé `lePersonnel`. Ajoutez un constructeur sans paramètres instanciant cette collection en tant que `ArrayList`.  
+2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible) que l'on va appeler `lePersonnel`. Ajoutez un constructeur sans paramètres instanciant cette collection en tant que `ArrayList`.  
 
-3. Ajoutez-y les méthodes `void embaucher(Employe e)` et `void licencier(Employe e)` pour mettre à jour la liste d'employés de manière correspondante.
+3. Ajoutez à `Entreprise` les méthodes `void embaucher(Employe e)` et `void licencier(Employe e)` pour mettre à jour la liste d'employés de manière correspondante.
 
-4. Redéfinissez la méthode `String toString()` de la classe `Entreprise`.
+4. Redéfinissez la méthode `String toString()` de la classe `Entreprise` pour afficher ses informations.
 
 5. Vérifiez votre programme en créant dans la classe principale une entreprise et en embauchant plusieurs employés. Vous afficherez l'état de l'entreprise après chacune des opérations.
 
 
 ### Exercice 2 - organisation des employés
 
-L'entreprise souhaite mieux organiser ses employés. Le problème c'est que la collection `lePersonnel` peut avoir la même personne plusieurs fois si elle occupe des postes différents. Et donc il ne faut surtout pas changer cela.
+L'entreprise souhaite mieux organiser ses employés. Le problème c'est que la collection `lePersonnel` peut contenir le même employé plusieurs fois si cette personne occupe des postes différents. Et donc il ne faut surtout pas changer cela.
 
-1. Redéfinissez les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe` afin de distinguer deux employés en fonction de leur numéro INSEE.
-Vous pouvez utiliser la méthode `hashCode()` de la classe `String`.
+1. Redéfinissez les méthodes `equals(Object o)` et `hashCode()` de la classe `Employe` afin de distinguer deux employés en fonction de leur numéro INSEE. Vous pouvez utiliser la méthode `hashCode()` de la classe `String`.
 
-2. Maintenant l'entreprise souhaite pouvoir retrouver l'ensemble de ses employés sans les doublons. De plus il serait souhaitable de pouvoir récuperer l'ensemble des employés dans l'ordre. L'ordre choisi est l'orde croissant suivant leur nom et qui en cas d'égalité, applique l'ordre décroissant en fonction du numéro INSEE. Sans trier explicitement les éléments, ajoutez une méthode `Collection<Employe> getEmployes()` qui, à partir de la collection `lePersonnel`, retourne une autre collection respectant cette contrainte. afin de n'embaucher que des employés avec des numéros INSEE différents et de préserver l'ordre indiqué.
-  **Attention** : Pas de modifications du code précédemment écrit (et donc de l'attribut `lePersonnel`).  
+2. Maintenant l'entreprise souhaite pouvoir retrouver l'ensemble de ses employés sans les doublons. De plus, pour une meilleure lisibilité, il serait souhaitable de pouvoir récuperer l'ensemble des employés dans l'ordre. L'ordre choisi est l'orde _croissant_ suivant le nom et qui en cas d'égalité, applique l'ordre _décroissant_ suivant le numéro INSEE. Sans trier explicitement les éléments, ajoutez une méthode `Collection<Employe> getEmployes()` qui, à partir de la collection `lePersonnel`, retourne une autre collection respectant ces contraintes. **Attention** : Pas de modifications du code précédemment écrit (et donc de l'attribut `lePersonnel`).
 
-3. Ecrivez des tests unitaires vérifiant que l'on ne récupère pas deux employés de même numéro INSEE, et que le parcours du personnel d'une entreprise s'effectue bien dans l'odre souhaité.
+3. Ecrivez plusieurs tests unitaires vérifiant la fonctionnalité programmée. Voici le scénario à appliquer dans chaque test :
+
+    * créer une entreprise
+    * créer plusieurs employés (au moins 4) avec des noms différents et/ou numéros INSEE différents
+    * vérifiez avec des _assertions_ que le résultat obtenu est correct. Pour des exemples d'assertions :
+    
+        * le TP2 : https://github.com/IUTInfoMontp-M2103/TP2
+        * un tutoriel en ligne : https://www.petrikainulainen
+        * l'API de la classe `Assertions` : https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html
+
 
 ### Exercice 3 - priorité aux anciens
 
@@ -68,7 +73,7 @@ L'entreprise souhaite distribuer des bonus à ses employés en fonction de la da
 
 2. Ajoutez à la classe `Employe` un attribut `double bonus` et une méthode _setter_ `void setBonus(double bonus)`.
  
-3. Ajoutez à la classe `Employe` une méthode `int getMoisAncienneté()` qui renvoient le nombre de mois correspondant à l'intervalle de temps entre la date d'embauche et maintenant. L'ancienneté est calculée sur le nombre de mois complets depuis la date d'embauche (un mois complet est compté du 1er au 30/31).
+3. Ajoutez à la classe `Employe` une méthode `int getMoisAncienneté()` qui renvoient le nombre de mois correspondant à l'intervalle de temps entre la date d'embauche et maintenant. L'ancienneté est calculée sur le nombre de mois **complets** depuis la date d'embauche (un mois complet est compté du 1er au 30/31).
     
     **Astuce :** pour calculer l'ancienneté vous pouvez utiliser la classe `ChronoUnit` qui permet d'effectuer des calculs en fonction de différentes unités temporelles (jours, mois, années etc.). Voici un exemple de code qui permet de calculer le nombre de mois entre la date d'embauche et la date d'aujourd'hui :
  
@@ -77,17 +82,37 @@ L'entreprise souhaite distribuer des bonus à ses employés en fonction de la da
  
     class GestionEtudiants {
         public static void main(String args[]) {
-            LocalDate dateEmbauche = LocalDate.of(2013, Month.NOVEMBER, 2);
+            LocalDate dateEmbauche = LocalDate.of(2019, Month.JANUARY, 28);
             long nbMois = ChronoUnit.MONTHS.between(dateEmbauche, LocalDate.now());
         }
     }
     ```
  
-4. Le patron a décidé de donner la priorité aux anciens pour la distribution du bonus. Ainsi, le bonus sera d'abord distribué aux personnes avec l'ancienneté la plus élevée. Le bonus qu'un employé va recevoir est égal à `3*ancienneté`. Ajoutez à la classe `Entreprise` une méthode `void distribuerBonus()` qui effectue cette tâche **sans utiliser explicitement** un algorithme de tri et sans modifier la classe `Employe`.
+4. Ecrivez plusieurs tests unitaires vérifiant le bon fonctionnement de la méthode `int getMoisAncienneté()` de la classe `Employe`. Vérifiez notamment que deux personnes étant embauchés le même mois de la même année mais à des dates différentes, aient la même ancienneté.
 
-5. Modifiez la méthode `toString()` de `Employe` afin qu'elle affiche également le bonus que l'employé a reçu et testez votre solution.
+5. Le patron a décidé de donner la priorité aux anciens pour la distribution du bonus. Ainsi, le bonus sera distribué aux employés suivant leur dates d'embauche : de la plus ancienne, à la plus récente. Le bonus qu'un employé va recevoir est égal à `3*ancienneté`. Ajoutez à la classe `Entreprise` une méthode `void distribuerBonus()` qui effectue cette tâche **sans utiliser explicitement** un algorithme de tri et sans modifier la classe `Employe`.
 
-6. L'entreprise traverse une période de crise et décide de se séparer d'une partie de ses employés. Afin de fidéliser les anciens employés, ce qui a été décidé c'est de licencier les employés ayant travaillé le moins longtemps dans l'entreprise. Sans modifier le code précédemment écrit, ajoutez dans la classe `Entreprise` une méthode `void remercier(int n)` qui permet de licencier `n` personnes les plus  anciennes dans l'ordre décroissant.
+6. Modifiez la méthode `toString()` de `Employe` afin qu'elle affiche également le bonus que l'employé a reçu et testez votre solution : en écrivant des tests unitaires ou en affichant directement dans le `main(String args[])` de la classe principale.
 
-### Exercice 4 - ???
+7. L'entreprise traverse une période de crise et décide de se séparer d'une partie de ses employés. Afin de fidéliser les anciens employés, ce qui a été décidé c'est de licencier les employés ayant travaillé le moins longtemps dans l'entreprise. Sans modifier le code précédemment écrit, ajoutez dans la classe `Entreprise` une méthode `void remercier(int n)` qui permet de licencier `n` ayant été embauché le plus tard.
 
+
+### Exercice 4 - Indemnités de transport
+
+On souhaite maintenant pouvoir calculer les indemnités de transport pour chaque employé en fonction de la distance entre sa ville de résidence (une données de type `String`) et les locaux de l'entreprise.
+
+1. Ajoutez à la classe `Employe` un attribut `adresse` correspondant à sa ville de résidence. Ajoutez un _getter_ et un _setter_ de cet attribut.
+
+2. Écrivez une classe `GestionDistances` qui initialise et gère une collection statique faisant correspondre une distance (un entier) à une ville. Une ville ne peut être associée qu'à une unique distance, mais une même distance peut être associée à plusieurs villes. À titre d'exemple vous stockerez dans la collection les données suivantes :
+    * Montpellier &rightarrow; 0
+    * Sète &rightarrow; 36
+    * Sommières &rightarrow; 30
+    * Nîmes &rightarrow; 58
+    * Lunel &rightarrow; 30
+    * Béziers &rightarrow; 80
+
+3. Proposez une méthode statique `int getDistance(String ville)` dans la classe `GestionDistances` qui retourne la distance associée à la ville passée en paramètres.
+ 
+4. Ajoutez à la classe `Employe` une méthode `double getIndemnitéTransport()` retournant l'indemnité qui est dûe à l'employé. La formule de calcul de cette indemnité est `distance  * base`.
+
+5. Écrivez des tests unitaires pour vérifier le bon fonctionnement de la méthode `double getIndemnitéTransport()`.
