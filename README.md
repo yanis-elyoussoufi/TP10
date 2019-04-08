@@ -61,7 +61,7 @@ L'entreprise souhaite mieux organiser ses employés. Le problème c'est que la c
     * vérifiez avec des _assertions_ que le résultat obtenu est correct. Pour des exemples d'assertions :
     
         * le TP2 : https://github.com/IUTInfoMontp-M2103/TP2
-        * un tutoriel en ligne : https://www.petrikainulainen
+        * un tutoriel en ligne : https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-assertions-with-junit-5-api/
         * l'API de la classe `Assertions` : https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html
 
 
