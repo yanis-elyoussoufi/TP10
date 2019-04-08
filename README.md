@@ -27,7 +27,7 @@ Avant de démarrer le TP, vérifiez que vous n'avez pas atteint votre quota d'es
 
 Cliquez sur le lien ci-dessous pour faire votre fork privé du TP :
 
-LIEN CLASSROOM ICI
+https://classroom.github.com/a/Tgeln-Od
 
 Date limite de rendu de votre code sur le dépôt GitHub : **Dimanche 14 avril à 23h00**
 
@@ -97,7 +97,7 @@ L'entreprise souhaite distribuer des bonus à ses employés en fonction de la da
 7. L'entreprise traverse une période de crise et décide de se séparer d'une partie de ses employés. Afin de fidéliser les anciens employés, ce qui a été décidé c'est de licencier les employés ayant travaillé le moins longtemps dans l'entreprise. Sans modifier le code précédemment écrit, ajoutez dans la classe `Entreprise` une méthode `void remercier(int n)` qui permet de licencier `n` ayant été embauché le plus tard.
 
 
-### Exercice 4 - Indemnités de transport
+### Exercice 4 - indemnités de transport
 
 On souhaite maintenant pouvoir calculer les indemnités de transport pour chaque employé en fonction de la distance entre sa ville de résidence (une données de type `String`) et les locaux de l'entreprise.
 
