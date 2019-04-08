@@ -35,11 +35,11 @@ Reprenons la classe `Employe` que vous avez écrite pour le [TP5](https://github
 
 ### Exercice 1 - mise en place
 
-1. Ajoutez un attribut `dateEmbauche` de type `LocalDate` dans la classe `Employe` et faites les modifications nécessaires pour la construction d'un objet de type `Employe`. Ajoutez également un accesseur à cet attribut.
+1. Ajoutez un attribut `dateEmbauche` de type `LocalDate` dans la classe `Employe`. Ajoutez également un accesseur (_getter_) et un modifieurs (_setter_) à cet attribut.
 
 2. Créez une classe `Entreprise` contenant une collection d'employés (la plus générale possible) que l'on va appeler `lePersonnel`. Ajoutez un constructeur sans paramètres instanciant cette collection en tant que `ArrayList`.  
 
-3. Ajoutez à `Entreprise` les méthodes `void embaucher(Employe e)` et `void licencier(Employe e)` pour mettre à jour la liste d'employés de manière correspondante.
+3. Ajoutez à `Entreprise` les méthodes `void embaucher(Employe e, LocalDate dateEmbauche)` et `void licencier(Employe e)` pour mettre à jour la liste d'employés de manière correspondante.
 
 4. Redéfinissez la méthode `String toString()` de la classe `Entreprise` pour afficher ses informations.
 
