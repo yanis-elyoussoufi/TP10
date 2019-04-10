@@ -1,39 +1,18 @@
 package fr.umontpellier.iut;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.time.temporal.ChronoUnit;
 
-public class Employe {
+public class Employe implements Comparable<Employe> {
     private String numeroSecuriteSocial;
     private String nom;
     private String prenom;
     private int echelon;
     private double nbHeure;
     private double base;
-
     private LocalDate dateEmbauche;
-
-    public LocalDate getDateEmbauche() {
-        return dateEmbauche;
-    }
-
-    public void setDateEmbauche(LocalDate dateEmbauche) {
-        this.dateEmbauche = dateEmbauche;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employe employe = (Employe) o;
-        return Objects.equals(numeroSecuriteSocial, employe.numeroSecuriteSocial);
-        /* return numeroSecuriteSocial.equals(employe.numeroSecuriteSocial); */
-    }
-
-    @Override
-    public int hashCode() {
-        return numeroSecuriteSocial.hashCode();
-    }
+    private double bonus;
+    private String adresse
 
     public Employe(String numeroSecuriteSocial, String nom, String prenom, int echelon, double nbHeure, double base) {
         this.numeroSecuriteSocial = numeroSecuriteSocial;
@@ -42,6 +21,14 @@ public class Employe {
         this.echelon = echelon;
         this.nbHeure = nbHeure;
         this.base = base;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public static class EmployeBuilder {
@@ -83,8 +70,29 @@ public class Employe {
         }
 
         public Employe createEmploye() {
-            return new Employe(numeroSecuriteSocial, nom, prenom, echelon, nbHeure, base);
+            return new fr.umontpellier.iut.EmployeBuilder().setNumeroSecuriteSocial(numeroSecuriteSocial).setNom(nom).setPrenom(prenom).setEchelon(echelon).setNbHeure(nbHeure).setBase(base).createEmploye();
         }
+    }
+
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    public double getBonus() {
+        return bonus;
+    }
+
+    public LocalDate getDateEmbauche() {
+        return dateEmbauche;
+    }
+
+    double getIndemnitéTransort(){
+        return base * GestionDistance.getDistances(adresse)
+    }
+
+    public void setDateEmbauche(LocalDate dateEmbauche) {
+        this.dateEmbauche = dateEmbauche;
     }
 
     public int getEchelon() {
@@ -93,6 +101,10 @@ public class Employe {
 
     public double getBase() {
         return base;
+    }
+
+    public int getMoisAnciennete(){
+        return (int) ChronoUnit.MONTHS.between(dateEmbauche, LocalDate.now());
     }
 
     public double calculerSalaireBrut(){
@@ -117,5 +129,27 @@ public class Employe {
 
     public double getNbHeure() {
         return nbHeure;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return numeroSecuriteSocial.equals(employe.numeroSecuriteSocial);
+    }
+
+    @Override
+    public int hashCode() {
+        return numeroSecuriteSocial.hashCode();
+    }
+
+    @Override
+    public int compareTo(Employe e){
+        int x = nom.compareTo(e.nom);
+        if( x == 0){
+            return -numeroSecuriteSocial.compareTo(e.numeroSecuriteSocial);
+        }
+        return x;
     }
 }
